@@ -1,4 +1,4 @@
-# ChoyJS
+# Choy.js
 Sodda va moslashuvchan JavaScript freymvork.
 
 ## O'rnatish
@@ -12,12 +12,24 @@ choyApp = new Choy();
 ```
 Undan keyingiz qatorda esa, loyihaning nomi va REST Api(backend) manzili yozing
 ```javascript
-choyApp.setAppConf("Scheduler", "http://localhost:1337");
+choyApp.setAppConf("Scheduler", "http://localhost:1337/api/v1");
 choyApp.init();
+choyApp.setDebug(true); // barcha loglarni ko'rsatish
 ```
 Shunda freymvork ishlatish uchun tayyor bo'ladi.
 
-Agar requestlarni natijalarini ko'rmoqchi bo'lsagiz setDebug() orqali sozlanadi.
+## Request jo'natish
 ```javascript
-choyApp.setDebug(true);
+choyApp.HTTP.get("/articles", function(err, response) {
+  // Agar backend hech qanday javob qaytarmasa
+  if(err) return console.error(err);
+  
+  // Agar backendan javob olinse uni consolega chiqaramiz
+  console.log(response);
+});
 ```
+Shunda "http://localhost:1337/api/v1/articles"ga GET request jo'natiladi. choy.HTTP.*** orqali quyidagicha so'rovlarni jo'natishingiz mumkin:
+* get
+* post
+* put
+* delete
