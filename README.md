@@ -10,9 +10,9 @@ Yangi javascript fayl yaratib uni ichiga:
 ```javascript
 choyApp = new Choy();
 ```
-Undan keyingiz qatorda esa, loyihaning nomi va REST Api(backend) manzili yozing
+Undan keyingi qatorda esa, loyihaning nomi va REST Api(backend) manzili yozing
 ```javascript
-choyApp.setAppConf("Scheduler", "http://localhost:1337/api/v1");
+choyApp.setAppConf("Choyxona Application", "http://localhost:1337/api/v1");
 choyApp.init();
 choyApp.setDebug(true); // barcha loglarni ko'rsatish
 ```
@@ -24,7 +24,7 @@ choyApp.HTTP.get("/articles", function(err, response) {
   // Agar backend hech qanday javob qaytarmasa
   if(err) return console.error(err);
   
-  // Agar backendan javob olinse uni consolega chiqaramiz
+  // Agar backendan javob olinsa uni consolega chiqaramiz
   console.log(response);
 });
 ```
