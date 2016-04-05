@@ -28,7 +28,7 @@ choyApp.HTTP.get("/articles", function(err, response) {
   console.log(response);
 });
 ```
-Shunda "http://localhost:1337/api/v1/articles"ga GET request jo'natiladi. choy.HTTP.*** orqali quyidagicha so'rovlarni jo'natishingiz mumkin:
+Shunda `http://localhost:1337/api/v1/articles`ga GET request jo'natiladi. `choy.HTTP` orqali quyidagicha so'rovlarni jo'natishingiz mumkin:
 * get
 * post
 * put
