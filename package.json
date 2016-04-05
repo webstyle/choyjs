@@ -1,0 +1,31 @@
+{
+  "name": "choyjs",
+  "version": "0.0.1",
+  "description": "Minimalistic JavaScript framework",
+  "main": "choy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebStyle/choyjs.git"
+  },
+  "keywords": [
+    "choy",
+    "choy.js",
+    "javascript",
+    "js",
+    "http",
+    "minimalistic"
+  ],
+  "author": "Farrukh Mamatkhalilov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WebStyle/choyjs/issues"
+  },
+  "homepage": "https://github.com/WebStyle/choyjs#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^3.2.2"
+  }
+}

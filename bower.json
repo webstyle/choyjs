@@ -1,0 +1,26 @@
+{
+  "name": "choyjs",
+  "description": "Minimalistic JavaScript framework",
+  "main": "choy.js",
+  "authors": [
+    "Farrukh Mamatkhalilov"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "choy",
+    "choy.js",
+    "javascript",
+    "js",
+    "http",
+    "minimalistic"
+  ],
+  "homepage": "https://github.com/WebStyle/choyjs",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
