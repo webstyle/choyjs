@@ -85,29 +85,33 @@ Choy = function() {
 
         function sendRequest(method, url, callback, data) {
 
-            var xhr, body;
+            var xhr, body, resJson;
 
             xhr = new XMLHttpRequest();
             body = data || {};
 
             xhr.open(method, appRestUrl + url, false);
             xhr.send(body);
+            resJson = JSON.parse(xhr.responseText);
 
-            if(debug) {
-              console.log(method + ": "+ url);
-              if (data) {
-                console.log("Jo'natilgan ma'lumot:" + data);
-              }
-              console.log("Qaytgan ma'lumotlar:"+ xhr.responseText);
+            if (debug) {
+                console.log(method + ": " + url);
+                if (data) {
+                    console.log("Jo'natilgan ma'lumot:");
+                    console.log(data);
+                }
+                console.log("Qaytgan ma'lumotlar:");
+                console.log(resJson);
+                console.log("__________________________________________________");
             }
 
             if (xhr.status != 200) {
                 callback({
                     status: xhr.status,
                     message: xhr.statusText
-                }, {});
+                }, null);
             } else {
-                callback(false, JSON.parse(xhr.responseText));
+                callback(false, resJson);
             }
         };
 
