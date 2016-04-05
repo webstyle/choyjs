@@ -16,7 +16,7 @@ Choy = function() {
      * appName - yangi qo'shilgan dasturning nomi shu o'zgaruvchida saqlanadi.
      * appRestUrl - RESTFull API uchun so'rovlarni jo'natiladigan markazi manzil.
      */
-    var appName, appRestUrl;
+    var appName, appRestUrl, debug;
 
     /**
      * Dasturning asosiy ma'lumotlarini o'rnatish.
@@ -24,6 +24,14 @@ Choy = function() {
     this.setAppConf = function(name, url) {
         appName = name;
         appRestUrl = url;
+    };
+
+    /**
+     * Debug yoqish yoki o'chirish.
+     * Agar debug rejim yoqiq bo'lsa, barcha jo'natilayotgan ma'lumotlar log qilinadi!
+     */
+    this.setDebug = function(bool) {
+        debug = bool;
     };
 
     /**
@@ -85,6 +93,14 @@ Choy = function() {
             xhr.open(method, appRestUrl + url, false);
             xhr.send(body);
 
+            if(debug) {
+              console.log(method + ": "+ url);
+              if (data) {
+                console.log("Jo'natilgan ma'lumot:" + data);
+              }
+              console.log("Qaytgan ma'lumotlar:"+ xhr.responseText);
+            }
+
             if (xhr.status != 200) {
                 callback({
                     status: xhr.status,
@@ -93,8 +109,10 @@ Choy = function() {
             } else {
                 callback(false, JSON.parse(xhr.responseText));
             }
-        }
+        };
+
 
     }
+
 
 };
