@@ -1,3 +1,4 @@
 # ChoyJS
 
-Mikrofreymvork
+Choyjs mikrofreymvorki.
+versiya: 0.0.1
