@@ -1,7 +1,7 @@
 {
   "name": "choyjs",
   "description": "Minimalistic JavaScript framework",
-  "main": "choy.js",
+  "main": "./dist/choy.min.js",
   "authors": [
     "Farrukh Mamatkhalilov"
   ],
