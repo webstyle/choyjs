@@ -8,8 +8,6 @@
  */
 
 
-const Choy;
-
 class Choy {
 
     /**
@@ -17,14 +15,19 @@ class Choy {
      * appName - yangi qo'shilgan dasturning nomi shu o'zgaruvchida saqlanadi.
      * appRestUrl - RESTFull API uchun so'rovlarni jo'natiladigan markazi manzil.
      */
-    let appName, appRestUrl, debug;
+
+    constructor(appName, appRestUrl, debug) {
+        this.appName = appName;
+        this.appRestUrl = appRestUrl;
+        this.debug = debug;
+    }
 
     /**
      * Dasturning asosiy ma'lumotlarini o'rnatish.
      */
     setAppConf(name, url) {
-        appName = name;
-        appRestUrl = url;
+        this.appName = name;
+        this.appRestUrl = url;
     };
 
     /**
@@ -32,7 +35,7 @@ class Choy {
      * Agar debug rejim yoqiq bo'lsa, barcha jo'natilayotgan ma'lumotlar log qilinadi!
      */
     setDebug(bool) {
-        debug = bool;
+        this.debug = bool;
     };
 
     /**
@@ -40,8 +43,8 @@ class Choy {
      */
     appInfo() {
         return {
-            appName: appName,
-            appRestUrl: appRestUrl
+            appName: this.appName,
+            appRestUrl: this.appRestUrl
         };
     };
 
@@ -49,9 +52,9 @@ class Choy {
      * Dasturni ishga tushirish uchun
      */
     init() {
-        if (appName && appRestUrl) {
-            console.log(`Sizning ${appName} dasturingiz ishga tushdi!`);
-            console.log(`RESTFull Api manzili: ${appRestUrl}`);
+        if (this.appName && this.appRestUrl) {
+            console.log(`Sizning ${this.appName} dasturingiz ishga tushdi!`);
+            console.log(`RESTFull Api manzili: ${this.appRestUrl}`);
             this.HTTP = new Request();
         } else {
             console.error('Sizning dasturingiz ishga tushirilmagan');
@@ -65,27 +68,34 @@ class Choy {
  * Ajax so'rov jo'natish uchun
  */
 class Request extends Choy {
-
     /**
      * So'rov jo'natish.
      */
-    this.get = (url, callback) => sendRequest("GET", url, callback);
+    get(url, callback) {
+        this.sendRequest("GET", url, callback);
+    }
 
-    this.delete = (url, callback) => sendRequest("DELETE", url, callback);
+    delete(url, callback) {
+        this.sendRequest("DELETE", url, callback);
+    }
 
-    this.post = (url, data, callback) => sendRequest("POST", url, callback, data);
+    post(url, data, callback) {
+        this.sendRequest("POST", url, callback, data);
+    }
 
-    this.put = (url, data, callback) => sendRequest("PUT", url, callback, data);
+    put(url, data, callback) {
+        this.sendRequest("PUT", url, callback, data);
+    }
 
-    let sendRequest = (method, url, callback, data) => {
+    sendRequest(method, url, callback, data) {
 
         let [xhr, body] = [new XMLHttpRequest(), data || {}];
 
-        xhr.open(method, appRestUrl + url, false);
+        xhr.open(method, this.appRestUrl + url, false);
         xhr.send(body);
         let resJson = JSON.parse(xhr.responseText);
 
-        if (debug) {
+        if (this.debug) {
             console.log(method + ": " + url);
             if (data) {
                 console.log(`Jo'natilgan ma'lumot:`);
