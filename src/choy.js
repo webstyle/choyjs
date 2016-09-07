@@ -72,21 +72,17 @@ Choy = () => {
 
         this.delete = (url, callback) => sendRequest("DELETE", url, callback);
 
-
         this.post = (url, data, callback) => sendRequest("POST", url, callback, data);
 
         this.put = (url, data, callback) => sendRequest("PUT", url, callback, data);
 
         function sendRequest(method, url, callback, data) {
 
-            let xhr, body, resJson;
-
-            xhr = new XMLHttpRequest();
-            body = data || {};
+            let [xhr, body] = [new XMLHttpRequest(), data || {}];
 
             xhr.open(method, appRestUrl + url, false);
             xhr.send(body);
-            resJson = JSON.parse(xhr.responseText);
+            let resJson = JSON.parse(xhr.responseText);
 
             if (debug) {
                 console.log(method + ": " + url);
