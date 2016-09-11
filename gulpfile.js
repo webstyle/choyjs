@@ -3,6 +3,7 @@ const uglify = require('gulp-uglify');
 const pump = require('pump');
 const babel = require('gulp-babel');
 const connect = require('gulp-connect');
+const concat = require('gulp-concat');
 
 
 gulp.task('build', () => {
@@ -10,6 +11,7 @@ gulp.task('build', () => {
         .pipe(babel({
             presets: ['es2015']
         }))
+        .pipe(concat('choy.js'))
         .pipe(gulp.dest('./dist'));
 });
 
@@ -18,7 +20,7 @@ gulp.task('connect', () => {
     connect.server({
         name: 'Choyxona App',
         root: ['examples', 'dist'],
-        port: 8080,
+        port: 9000,
         livereload: true
     });
 });

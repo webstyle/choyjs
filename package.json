@@ -35,6 +35,7 @@
     "pump": "^1.0.1"
   },
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0"
   }
 }

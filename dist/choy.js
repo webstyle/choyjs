@@ -9,10 +9,6 @@
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Choy = function () {
@@ -87,12 +83,21 @@ var Choy = function () {
     return Choy;
 }();
 
+console.log('Hello world');
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 /**
  * XMLHttpRequest
  * Ajax so'rov jo'natish uchun
  */
-
-
 var Request = function (_Choy) {
     _inherits(Request, _Choy);
 
@@ -103,7 +108,7 @@ var Request = function (_Choy) {
     }
 
     _createClass(Request, [{
-        key: 'get',
+        key: "get",
 
         /**
          * So'rov jo'natish.
@@ -112,22 +117,22 @@ var Request = function (_Choy) {
             this.sendRequest("GET", url, callback);
         }
     }, {
-        key: 'delete',
+        key: "delete",
         value: function _delete(url, callback) {
             this.sendRequest("DELETE", url, callback);
         }
     }, {
-        key: 'post',
+        key: "post",
         value: function post(url, data, callback) {
             this.sendRequest("POST", url, callback, data);
         }
     }, {
-        key: 'put',
+        key: "put",
         value: function put(url, data, callback) {
             this.sendRequest("PUT", url, callback, data);
         }
     }, {
-        key: 'sendRequest',
+        key: "sendRequest",
         value: function sendRequest(method, url, callback, data) {
             var xhr = new XMLHttpRequest();
             var body = data || {};
@@ -140,10 +145,10 @@ var Request = function (_Choy) {
             if (this.debug) {
                 console.log(method + ": " + url);
                 if (data) {
-                    console.log('Jo\'natilgan ma\'lumot:');
+                    console.log("Jo'natilgan ma'lumot:");
                     console.log(data);
                 }
-                console.log('Qaytgan ma\'lumotlar:');
+                console.log("Qaytgan ma'lumotlar:");
                 console.log(resJson);
                 console.log("__________________________________________________");
             }
