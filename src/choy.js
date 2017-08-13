@@ -7,7 +7,6 @@
  *
  */
 
-
 class Choy {
 
     /**
@@ -55,11 +54,10 @@ class Choy {
         if (this.appName && this.appRestUrl) {
             console.log(`Sizning ${this.appName} dasturingiz ishga tushdi!`);
             console.log(`RESTFull Api manzili: ${this.appRestUrl}`);
-            this.HTTP = new Request();
+            this.HTTP = new Request(this.appRestUrl);
         } else {
             console.error('Sizning dasturingiz ishga tushirilmagan');
         }
     };
 }
 
-console.log('Hello world');

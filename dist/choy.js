@@ -73,7 +73,7 @@ var Choy = function () {
             if (this.appName && this.appRestUrl) {
                 console.log('Sizning ' + this.appName + ' dasturingiz ishga tushdi!');
                 console.log('RESTFull Api manzili: ' + this.appRestUrl);
-                this.HTTP = new Request();
+                this.HTTP = new Request(this.appRestUrl);
             } else {
                 console.error('Sizning dasturingiz ishga tushirilmagan');
             }
@@ -82,89 +82,85 @@ var Choy = function () {
 
     return Choy;
 }();
-
-console.log('Hello world');
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 /**
  * XMLHttpRequest
  * Ajax so'rov jo'natish uchun
  */
-var Request = function (_Choy) {
-    _inherits(Request, _Choy);
+var Request = exports.Request = function () {
+  function Request(apiUrl) {
+    _classCallCheck(this, Request);
 
-    function Request() {
-        _classCallCheck(this, Request);
+    this.apiUrl = apiUrl;
+  }
 
-        return _possibleConstructorReturn(this, (Request.__proto__ || Object.getPrototypeOf(Request)).apply(this, arguments));
+  /**
+   * So'rov jo'natish.
+   */
+
+
+  _createClass(Request, [{
+    key: "get",
+    value: function get(url, callback) {
+      this.sendRequest("GET", url, callback);
     }
+  }, {
+    key: "delete",
+    value: function _delete(url, callback) {
+      this.sendRequest("DELETE", url, callback);
+    }
+  }, {
+    key: "post",
+    value: function post(url, data, callback) {
+      this.sendRequest("POST", url, callback, data);
+    }
+  }, {
+    key: "put",
+    value: function put(url, data, callback) {
+      this.sendRequest("PUT", url, callback, data);
+    }
+  }, {
+    key: "sendRequest",
+    value: function sendRequest(method, url, callback, data) {
+      console.log(url);
+      var xhr = new XMLHttpRequest(),
+          body = data || {};
 
-    _createClass(Request, [{
-        key: "get",
 
-        /**
-         * So'rov jo'natish.
-         */
-        value: function get(url, callback) {
-            this.sendRequest("GET", url, callback);
+      xhr.open(method, this.apiUrl + url, false);
+      xhr.send(body);
+      var resJson = JSON.parse(xhr.responseText);
+
+      if (this.debug) {
+        console.log(method + ": " + url);
+        if (data) {
+          console.log("Jo'natilgan ma'lumot:");
+          console.log(data);
         }
-    }, {
-        key: "delete",
-        value: function _delete(url, callback) {
-            this.sendRequest("DELETE", url, callback);
-        }
-    }, {
-        key: "post",
-        value: function post(url, data, callback) {
-            this.sendRequest("POST", url, callback, data);
-        }
-    }, {
-        key: "put",
-        value: function put(url, data, callback) {
-            this.sendRequest("PUT", url, callback, data);
-        }
-    }, {
-        key: "sendRequest",
-        value: function sendRequest(method, url, callback, data) {
-            var xhr = new XMLHttpRequest();
-            var body = data || {};
+        console.log("Qaytgan ma'lumotlar:");
+        console.log(resJson);
+        console.log("__________________________________________________");
+      }
 
+      if (xhr.status != 200) {
+        return callback({
+          status: xhr.status,
+          message: xhr.statusText
+        }, null);
+      }
 
-            xhr.open(method, this.appRestUrl + url, false);
-            xhr.send(body);
-            var resJson = JSON.parse(xhr.responseText);
+      return callback(false, resJson);
+    }
+  }]);
 
-            if (this.debug) {
-                console.log(method + ": " + url);
-                if (data) {
-                    console.log("Jo'natilgan ma'lumot:");
-                    console.log(data);
-                }
-                console.log("Qaytgan ma'lumotlar:");
-                console.log(resJson);
-                console.log("__________________________________________________");
-            }
-
-            if (xhr.status != 200) {
-                return callback({
-                    status: xhr.status,
-                    message: xhr.statusText
-                }, null);
-            }
-
-            return callback(false, resJson);
-        }
-    }]);
-
-    return Request;
-}(Choy);
-
-;
+  return Request;
+}();
